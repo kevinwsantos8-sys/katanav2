@@ -1,0 +1,41 @@
+name: Build Shadow Katana
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Java 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+
+      # O projeto nao tem gradlew, entao instalamos o Gradle 8.14 direto
+      - name: Instalar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.14
+
+      - name: Compilar
+        run: gradle build --no-daemon --stacktrace
+
+      - name: Enviar o mod compilado (.jar)
+        uses: actions/upload-artifact@v4
+        with:
+          name: shadowkatana-mod
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+          if-no-files-found: error
