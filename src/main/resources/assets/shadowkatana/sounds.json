@@ -1,0 +1,5 @@
+{
+  "katana_draw":    { "sounds": ["shadowkatana:katana_draw"],    "subtitle": "subtitles.shadowkatana.katana_draw" },
+  "katana_swish":   { "sounds": ["shadowkatana:katana_swish"],   "subtitle": "subtitles.shadowkatana.katana_swish" },
+  "katana_sheathe": { "sounds": ["shadowkatana:katana_sheathe"], "subtitle": "subtitles.shadowkatana.katana_sheathe" }
+}
